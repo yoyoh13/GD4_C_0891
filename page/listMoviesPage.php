@@ -1,13 +1,20 @@
 <?php
     include '../component/sidebar.php'
 ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <div class="container p-3 m-4 h-100" style="background-color: #FFFFFF; border-top: 5px
     solid #D40013; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0,
     0.19);" >
         <div class="body d-flex justify-content-between">
             <h4>LIST MOVIE</h4>
-    </div>
-    <hr>
+            <a href="../page/addMoviesPage.php">
+                <i style="color: black" class="fa fa-plus"></i>
+            </a>
+        </div>
+        <div>
+        
+        </div>
+        <hr>
         <table class="table ">
         <thead>
             <tr>
@@ -16,7 +23,8 @@
                 <th scope="col">Genre</th>
                 <th scope="col">Realese</th>
                 <th scope="col">Season</th>
-                <th scope="col"></th>
+                <th scope="col">Edit</th>
+                <th scope="col">delete</th>
             </tr>
         </thead>
         <tbody>
@@ -36,9 +44,14 @@
                     <td>'.$data['realese'].'</td>
                     <td>'.$data['season'].'</td>
                     <td>
+                        <a href="../page/editMoviesPage.php?id='.$data['id'].'"> 
+                        <i style="color: blue" class="fa fa-pencil"></i>
+                        </a>
+                    </td>
+                    <td>
                         <a href="../process/deleteMovieProcess.php?id='.$data['id'].'"
                         onClick="return confirm ( \'Are you sure want to delete this
-                        data?\')"> <i style="color: red" class="fa fa-trash fa-2x"></i>
+                        data?\')"> <i style="color: red" class="fa fa-trash"></i>
                         </a>
                     </td>
                 </tr>';

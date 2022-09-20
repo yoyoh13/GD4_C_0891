@@ -15,27 +15,37 @@
         $phonenum = $_POST['phonenum'];
         $membership = $_POST['membership'];
 
-        // Melakukan insert ke databse dengan query dibawah ini
-        $query = mysqli_query($con,
+        
+        $cek = mysqli_query($con, "SELECT email from users where email = '$email'")
+                or die(mysqli_error($con));
+
+        if(mysqli_num_rows($cek) > 0){
+            echo
+            '<script>
+            alert("Email Already exists");
+            window.history.back()
+            </script>';
+        }else{
+            $query = mysqli_query($con,
             "INSERT INTO users(email, password, name, phonenum, membership)
                 VALUES
             ('$email', '$password', '$name', '$phonenum', '$membership')")
-                or die(mysqli_error($con)); 
-                // perintah mysql yang gagal dijalankan ditangani oleh perintah “or die”
-        
-        
-        if($query){
-            echo
-                '<script>
-                alert("Register Success");
-                window.location = "../index.php"
-                </script>';
-        }else{
-            echo
-                '<script>
-                alert("Register Failed");
-                </script>';
+                or die(mysqli_error($con));
+
+                if($query){
+                    echo
+                        '<script>
+                        alert("Register Success");
+                        window.location = "../index.php"
+                        </script>';
+                }else{
+                    echo
+                        '<script>
+                        alert("Register Failed");
+                        </script>';
+                }
         }
+        
     }else{
         echo
             '<script>
